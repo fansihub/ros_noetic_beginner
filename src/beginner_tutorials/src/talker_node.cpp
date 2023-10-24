@@ -13,7 +13,7 @@ int count = 0;
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "hello world ROS noetic " << count;
+    ss << "hello world ROS noetic, this is a beginner tutorials " << count;
     msg.data = ss.str();
 
     ROS_INFO("%s", msg.data.c_str());
