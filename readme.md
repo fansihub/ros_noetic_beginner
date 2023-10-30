@@ -2,6 +2,10 @@
 
 **本工程为catkin工作空间**
 
+beginner_tutorials  为学习ros基本概念
+my_prj  使用ROS对机器人进行仿真控制
+其他的就是官方教程了
+
 **系统环境**
 
 master:ubuntu 20.04, ROS noetic

@@ -4,16 +4,18 @@
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
+// 这是一个回调函数，当有新消息到达chatter话题时它就会被调用。
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [%s]", msg->data.c_str());
+  ROS_INFO("subscriber:I heard: [%s]", msg->data.c_str());
 }
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "listener");
+  ros::init(argc, argv, "listener_node");
   ros::NodeHandle n;
-  ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+  // 订阅主题
+  ros::Subscriber sub = n.subscribe("chatter", 10, chatterCallback);
   ros::spin();
 
   return 0;

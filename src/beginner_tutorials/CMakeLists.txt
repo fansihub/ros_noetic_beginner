@@ -134,8 +134,6 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/beginner_tutorials_node.cpp)
-add_executable(talker_node src/talker_node.cpp)
-add_executable(listener_node src/listener_node.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -150,9 +148,15 @@ add_executable(listener_node src/listener_node.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+add_executable(talker_node src/talker_node.cpp)
+# 这确保了在使用此包之前生成了该包的消息头。
+add_dependencies(talker_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(talker_node
   ${catkin_LIBRARIES}
 )
+
+add_executable(listener_node src/listener_node.cpp)
+add_dependencies(listener_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(listener_node
 ${catkin_LIBRARIES}
 )
