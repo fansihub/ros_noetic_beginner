@@ -148,18 +148,32 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-add_executable(talker_node src/talker_node.cpp)
+add_executable(talker_node src/topic/talker_node.cpp)
 # 这确保了在使用此包之前生成了该包的消息头。
 add_dependencies(talker_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(talker_node
-  ${catkin_LIBRARIES}
+${catkin_LIBRARIES}
 )
 
-add_executable(listener_node src/listener_node.cpp)
+add_executable(listener_node src/topic/listener_node.cpp)
 add_dependencies(listener_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(listener_node
 ${catkin_LIBRARIES}
 )
+
+add_executable(server_node src/service/server_node.cpp)
+add_dependencies(server_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(server_node
+${catkin_LIBRARIES}
+)
+
+add_executable(client_node src/service/client_node.cpp)
+add_dependencies(client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(client_node
+${catkin_LIBRARIES}
+)
+
+
 #############
 ## Install ##
 #############
