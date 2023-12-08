@@ -1,0 +1,56 @@
+<launch>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find wpr_simulation)/worlds/my_buiding1.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Spawn the objects into Gazebo -->
+  <node name="bed" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bed.model -x 3.7 -y 3.7 -z 0 -Y 3.14159 -urdf -model bed" />
+  <node name="sofa" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/sofa.model -x -4.8 -y -2.2 -z 0 -Y 0 -urdf -model sofa" />
+  <node name="tea_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/tea_table.model -x -2.9 -y -1.1 -z 0 -Y 0 -urdf -model tea_table" />
+
+  <node name="kitchen_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x -3.5 -y 6.3 -z 0 -Y 1.57 -urdf -model kitchen_table" /> 
+  <node name="bottle_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottles/red_bottle.model -x -3.3 -y 6.22 -z 0.78 -Y 0 -urdf -model bottle_0" />
+  <node name="bottle_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottles/green_bottle.model -x -3.6 -y 6.22 -z 0.78 -Y 0 -urdf -model bottle_1" />
+
+  <node name="cupboard_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/cupboard.model -x -4.7 -y 0.4 -z 0 -Y 0 -urdf -model cupboard_0" />
+  <node name="cupboard_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/cupboard.model -x 3.5 -y 3.3 -z 0 -Y 3.14 -urdf -model cupboard_1" /> 
+
+  <node name="dinning_table_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 1.6 -y -1.1 -z 0 -Y 1.57 -urdf -model dinning_table_0" />
+  <node name="dinning_table_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 1.6 -y -0.6 -z 0 -Y 1.57 -urdf -model dinning_table_1" />
+  <node name="dinning_table_2" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 2.8 -y -1.1 -z 0 -Y 1.57 -urdf -model dinning_table_2" />
+  <node name="dinning_table_3" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 2.8 -y -0.6 -z 0 -Y 1.57 -urdf -model dinning_table_3" />
+
+  <node name="chair_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 1.7 -y -1.7 -z 0 -Y 1.57 -urdf -model chair_0" />
+  <node name="chair_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 1.5 -y 0 -z 0 -Y -1.57 -urdf -model chair_1" />
+  <node name="chair_2" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 2.9 -y -1.8 -z 0 -Y 1.57 -urdf -model chair_2" />
+  <node name="chair_3" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 3 -y 0 -z 0 -Y -1.57 -urdf -model chair_3" />
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/wpb_home.model -urdf -x 0.8 -y -7.5 -Y 1.57 -model wpb_home" />
+
+  <!-- tf -->
+  <arg name="model" default="$(find wpr_simulation)/models/wpb_home.model"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <!-- joy node -->
+  <!-- <node respawn="true" pkg="joy" type="joy_node" name="wpb_home_joy" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+  </node> -->
+
+  <!-- Axes Velcmd -->
+  <!-- <param name="axis_linear" value="1" type="int"/>
+  <param name="axis_angular" value="0" type="int"/>
+  <param name="scale_linear" value="1" type="double"/>
+  <param name="scale_angular" value="1" type="double"/>
+  <node pkg="wpb_home_bringup" type="wpb_home_js_vel" name="teleop"/> -->
+
+</launch>
