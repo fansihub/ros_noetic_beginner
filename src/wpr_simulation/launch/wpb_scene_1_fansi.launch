@@ -16,7 +16,7 @@
   <node name="tea_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/tea_table.model -x -2.9 -y -1.1 -z 0 -Y 0 -urdf -model tea_table" />
 
   <node name="kitchen_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x -3.5 -y 6.3 -z 0 -Y 1.57 -urdf -model kitchen_table" /> 
-  <node name="bottle_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottles/red_bottle.model -x -3.3 -y 6.22 -z 0.78 -Y 0 -urdf -model bottle_0" />
+  <node name="bottle_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottles/red_bottle.model -x -4.3 -y 6.22 -z 0.78 -Y 0 -urdf -model bottle_0" />
   <node name="bottle_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottles/green_bottle.model -x -3.6 -y 6.22 -z 0.78 -Y 0 -urdf -model bottle_1" />
 
   <node name="cupboard_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/cupboard.model -x -4.7 -y 0.4 -z 0 -Y 0 -urdf -model cupboard_0" />
